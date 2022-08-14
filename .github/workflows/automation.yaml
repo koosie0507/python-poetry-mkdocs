@@ -4,13 +4,6 @@ on:
   repository_dispatch:
     types: [on-demand-docker-build]
 
-env:
-  PYTHON_VERSION: ${{ github.event.client_payload.PYTHON_VERSION }}
-  POETRY_VERSION: ${{ github.event.client_payload.POETRY_VERSION }}
-  MKDOCS_VERSION: ${{ github.event.client_payload.MKDOCS_VERSION }}
-  MKDOCS_BUILD_PLANTUML_VERSION: ${{ github.event.client_payload.MKDOCS_BUILD_PLANTUML_VERSION }}
-  PLANTUML_VERSION: ${{ github.event.client_payload.PLANTUML_VERSION }}
-
 jobs:
   build-container:
     runs-on: ubuntu-latest
@@ -28,7 +21,14 @@ jobs:
       - name: Build image and push to Docker Hub and GitHub Container Registry
         uses: docker/build-push-action@v3
         with:
+          build-args: |
+            PYTHON_VERSION=${{ github.event.client_payload.PYTHON_VERSION }}
+            POETRY_VERSION=${{ github.event.client_payload.POETRY_VERSION }}
+            MKDOCS_VERSION=${{ github.event.client_payload.MKDOCS_VERSION }}
+            MKDOCS_BUILD_PLANTUML_VERSION=${{ github.event.client_payload.MKDOCS_BUILD_PLANTUML_VERSION }}
+            PLANTUML_VERSION=${{ github.event.client_payload.PLANTUML_VERSION }}
           tags: |
-            andreiolar1/python-poetry-mkdocs:${PYTHON_VERSION}-${POETRY_VERSION}-${MKDOCS_VERSION}
+            andreiolar1/python-poetry-mkdocs:${{ github.event.client_payload.PYTHON_VERSION }}-${{ github.event.client_payload.POETRY_VERSION }}-${{ github.event.client_payload.MKDOCS_VERSION }}
             andreiolar1/python-poetry-mkdocs:latest
           push: true
+
