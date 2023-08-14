@@ -2,31 +2,11 @@ name: build-docker-image
 on:
   workflow_dispatch:
     inputs:
-      PYTHON_VERSION:
+      build-args:
         type: string
         description: Python version
-        default: 3.11.4
+        default: PYTHON_VERSION=3.11.4 POETRY_VERSION=1.5.1 MKDOCS_VERSION=1.5.2 MKDOCS_BUILD_PLANTUML_VERSION=1.7.4 PLANTUML_VERSION=1.2023.10
         required: true
-      POETRY_VERSION:
-        type: string
-        description: Python Poetry version
-        required: true
-        default: 1.5.1
-      MKDOCS_VERSION:
-        type: string
-        description: mkdocs version
-        required: true
-        default: 1.5.2
-      MKDOCS_BUILD_PLANTUML_VERSION:
-        type: string
-        description: mkdocs_build_plantuml version
-        required: true
-        default: 1.7.4
-      PLANTUML_VERSION:
-        type: string
-        description: plantuml version
-        required: true
-        default: 1.2023.10
 jobs:
   build:
     runs-on: ubuntu-latest
