@@ -19,11 +19,6 @@ jobs:
       - name: build Docker image
         uses: docker/build-push-action@v3
         with:
-          build-args: |
-            PYTHON_VERSION=$(yq .latest.python < versions.yaml )
-            POETRY_VERSION=$(yq .latest.poetry < versions.yaml )
-            MKDOCS_VERSION=$(yq .latest.mkdocs < versions.yaml )
-            MKDOCS_BUILD_PLANTUML_VERSION=$(yq .latest.mkdocs_plantuml < versions.yaml )
-            PLANTUML_VERSION=$(yq .latest.plantuml < versions.yaml )
+          build-args: ${{inputs.build-args}}
           push: true
           tags: andreiolar1/python-poetry-mkdocs:latest
