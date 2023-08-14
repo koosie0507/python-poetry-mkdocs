@@ -1,6 +1,6 @@
 latest:
-  python: 3.10.6
-  poetry: 1.1.14
-  mkdocs: 1.3.1
+  python: 3.11.4
+  poetry: 1.5.1
+  mkdocs: 1.5.2
   mkdocs_plantuml: 1.7.4
-  plantuml: v1.2022.6
+  plantuml: v1.2023.10
