@@ -4,6 +4,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: install yq
+        uses: dcarbone/install-yq-action@v1.1.0
       - name: git checkout
         uses: actions/checkout@v2
       - name: set up Docker BuildX
