@@ -18,10 +18,10 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            PYTHON_VERSION=$(cat versions.yaml | yq .latest.python )
-            POETRY_VERSION=$(cat versions.yaml | yq .latest.poetry )
-            MKDOCS_VERSION=$(cat versions.yaml | yq .latest.mkdocs )
-            MKDOCS_BUILD_PLANTUML_VERSION=$(cat versions.yaml | yq .latest.mkdocs_plantuml )
-            PLANTUML_VERSION=$(cat version.yaml | yq .latest.plantuml )
+            PYTHON_VERSION=$(yq .latest.python < versions.yaml )
+            POETRY_VERSION=$(yq .latest.poetry < versions.yaml )
+            MKDOCS_VERSION=$(yq .latest.mkdocs < versions.yaml )
+            MKDOCS_BUILD_PLANTUML_VERSION=$(yq .latest.mkdocs_plantuml < versions.yaml )
+            PLANTUML_VERSION=$(yq .latest.plantuml < versions.yaml )
           push: true
           tags: andreiolar1/python-poetry-mkdocs:latest
