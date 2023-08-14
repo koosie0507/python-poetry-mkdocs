@@ -1,6 +1,22 @@
 name: build-docker-image
 on:
   workflow_dispatch:
+    inputs:
+      python:
+        default: 3.11.4
+        required: true
+      poetry:
+        default: 1.5.1
+        required: true
+      mkdocs:
+        default: 1.5.2
+        required: true
+      mkdocs_plantuml:
+        default: 1.7.4
+        required: true
+      plantuml:
+        default: 1.2023.10
+        required: true    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,10 +37,12 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           build-args: |
-            PYTHON_VERSION=3.11.4
-            POETRY_VERSION=1.5.1
-            MKDOCS_VERSION=1.5.2
-            MKDOCS_BUILD_PLANTUML_VERSION=1.7.4
-            PLANTUML_VERSION=1.2023.10
+            PYTHON_VERSION=${{inputs.python}}
+            POETRY_VERSION=${{inputs.poetry}}
+            MKDOCS_VERSION=${{inputs.mkdocs}}
+            MKDOCS_BUILD_PLANTUML_VERSION=${{inputs.mkdocs_plantuml}}
+            PLANTUML_VERSION=${{inputs.plantuml}}
           push: true
-          tags: andreiolar1/python-poetry-mkdocs:latest
+          tags: |
+            andreiolar1/python-poetry-mkdocs:latest
+            andreiolar1/python-poetry-mkdocs:${{inputs.python}}-${{inputs.poetry}}-${{inputs.mkdocs}}
