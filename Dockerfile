@@ -9,7 +9,7 @@ ARG PLANTUML_VERSION
 ARG PLANTUML_MARKDOWN_VERSION
 
 RUN apt-get update -yq \
-&& apt-get install -yq openjdk-17-jre-headless \
+&& apt-get install -yq openjdk-17-jre-headless graphviz \
 && rm -rf /var/lib/apt/lists/* \
 && curl -sSL --verbose "https://install.python-poetry.org" | POETRY_HOME=/opt/poetry python3 - \
 && pip install --upgrade "pip"\
