@@ -25,6 +25,10 @@ on:
         default: 1.2023.10
         required: true    
         description: plantuml version
+      plantuml_markdown:
+        default: 3.9.2
+        required: true    
+        description: plantuml-markdown version
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -54,6 +58,7 @@ jobs:
             MKDOCS_VERSION=${{inputs.mkdocs}}
             MKDOCS_BUILD_PLANTUML_VERSION=${{inputs.mkdocs_plantuml}}
             PLANTUML_VERSION=${{inputs.plantuml}}
+            PLANTUML_MARKDOWN_VERSION=${{inputs.plantuml_markdown}}
           push: true
           tags: |
             andreiolar1/python-poetry-mkdocs:latest
