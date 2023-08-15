@@ -19,5 +19,3 @@ COPY plantuml.sh /opt/plantuml/bin/plantuml
 RUN chmod 0755 /opt/plantuml/bin/plantuml
 
 ENV PATH="/opt/poetry/bin:/opt/plantuml/bin:${PATH}"
-
-ENTRYPOINT [ "/bin/bash", "-c" ]
