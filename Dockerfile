@@ -11,7 +11,7 @@ RUN apt-get update -yq \
 && apt-get install -yq openjdk-17-jre-headless \
 && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sSL "https://install.python-poetry.org" | POETRY_HOME=/opt/poetry python3 - \
+RUN curl -sSL --verbose "https://install.python-poetry.org" | POETRY_HOME=/opt/poetry python3 - \
 && pip install "mkdocs==${MKDOCS_VERSION}" "mkdocs-build-plantuml-plugin==${MKDOCS_BUILD_PLANTUML_VERSION}"
 
 RUN mkdir -p /opt/plantuml/{bin,lib} \
@@ -23,4 +23,4 @@ RUN chmod 0755 /opt/plantuml/bin/plantuml
 
 ENV PATH="/opt/poetry/bin:/opt/plantuml/bin:${PATH}"
 
-ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/bin/sh" ]
