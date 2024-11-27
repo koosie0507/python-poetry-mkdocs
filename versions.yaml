@@ -1,5 +1,5 @@
 latest:
-  python: 3.11.10
+  python: 3.12.7
   poetry: 1.8.4
   mkdocs: 1.6.1
   mkdocs_plantuml: 1.11.0
